@@ -1,0 +1,8 @@
+import Animal from "./class_animal";
+
+export default class Dog extends Animal {
+  constructor(nickname, food, location, weight) {
+    super(nickname, food, location);
+    this.weight = weight;
+  }
+}
