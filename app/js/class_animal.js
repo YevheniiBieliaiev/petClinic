@@ -5,6 +5,6 @@ export default class Animal {
     this.location = location;
   }
   changeFood() {
-
+    return `meal with rice`;
   }
 }

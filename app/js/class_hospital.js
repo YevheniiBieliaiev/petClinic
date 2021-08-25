@@ -1,23 +1,32 @@
-
-
 export default class Hospital {
-  //#illAnimals = illAnimals;
-  //#findingPetsPeople = findingPetsPeople;
-  constructor(name, illAnimals, findingPetsPeople) {
+  #illAnimals = [];
+  #findingPetsPeople = [];
+  constructor(name) {
     this.name = name;
-    // this.#illAnimals = illAnimals;
-    // this.#findingPetsPeople = findingPetsPeople;
   }
   getAnimals() {
-   
+    return this.#illAnimals;
   }
   getFindingPetsPeople() {
-
+    return this.#findingPetsPeople;
   }
   addAnimal(pet) {
-    animalArr.push(pet)
+    return this.#illAnimals.push(pet);
   }
-  addPeople() {
-
+  addPeople(...seekers) {
+    return seekers.forEach(item => this.#findingPetsPeople.push(item));
+  }
+  findHome(animal) {
+    if (this.#illAnimals.find(item => item.nickname === animal.nickname)) {
+      return {
+        status: "restricted",
+        message: `We need to heal ${animal.nickname} firstly`
+      }
+    } else {
+      return {
+        status: "success",
+        name: this.#findingPetsPeople.splice(Math.floor(Math.random() * this.#findingPetsPeople.length), 1).join("")
+      }
+    }
   }
 }

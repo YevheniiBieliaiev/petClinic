@@ -4,22 +4,48 @@ import Dog from "./class_dog";
 import Hospital from "./class_hospital";
 import Veterinarian from "./class_veterinarian";
 
+function main() {
+  const hospital = new Hospital("Cat & Dog");
 
+  const veterinarian = new Veterinarian("Corniei Ivanovich", "Chukovskii", hospital);
 
+  hospital.addPeople(
+    "Darkwing Duck",
+    "Gena The Crocodile",
+    "Snow Maiden",
+    "Little Mermaid",
+    "Snow White",
+    "Little Red Riding Hood",
+    "Topple",
+    "Shrek",
+    "WALL-E",
+    "Bender"
+  );
 
-const animalArr = [
-  new Cat("Barsik", "Whiskas", "Dr.Aibolit", false),
-  new Dog("Druzhok", "Pedigree", "Cat & Dog", 25),
-  new Cat("Vasia", "Whiskas", "Status Vet"),
-  new Dog("Bielka", "Pedigree", "Cat & Dog", 10),
-  new Cat("Sonia", "Whiskas", "Dr.Aibolit"),
-  new Cat("Rizhik", "Whiskas", "Vet City"),
-  new Dog("Charli", "Pedigree", "Vet City", 12),
-  new Dog("Masia", "Pedigree", "Status Vet", 5),
-  new Cat("Tom", "Whiskas", "Dr.Aibolit", false),
-  new Dog("Emma", "Pedigree", "Mary Pet", 21)
-];
+  let catTom = new Cat("Tom", "pet food", "New York");
+  let dogDruzhok = new Dog("Druzhok", "meat", "Kharkiv", 25);
+  let catBarsik = new Cat("Barsik", "vegetables", "Dnipro", false);
+  let dogCharli = new Dog("Charli", "porridge", "London", 12);
+  let catSonia = new Cat("Sonia", "Whiskas", "Poltava");
 
-console.log(animalArr)
+  //отправим животинку на проверку
+  veterinarian.treatAnimal(catTom);
+  veterinarian.treatAnimal(dogDruzhok);
+  veterinarian.treatAnimal(catBarsik);
+  veterinarian.treatAnimal(dogCharli);
+  veterinarian.treatAnimal(catSonia);
 
-const peopleArr = [];
+  //врач + результат проверки
+  console.group(veterinarian.getFullName());
+  console.log(veterinarian._setDiagnosis(catTom).info);
+  console.log(veterinarian._setDiagnosis(dogDruzhok).info);
+  console.log(veterinarian._setDiagnosis(catTom));
+  console.log(veterinarian._setDiagnosis(dogDruzhok));
+  console.log(veterinarian._setDiagnosis(catSonia).info);
+  console.groupEnd();
+
+  //животные в клинике
+  console.log('Animals in the hospital: ' + hospital.getAnimals().reduce((acc, item) => [...acc, item.nickname], []).join(", "));
+}
+
+main();
