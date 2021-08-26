@@ -21,7 +21,7 @@ export default class Veterinarian extends Person {
     } else if (animal.food === "pet food") {
       return {
         diagnosis: this.#diagnosis.ill,
-        info: `Change food. Now ${animal.nickname} eats ${animal.changeFood()}`
+        info: `Change food. Now ${animal.nickname} eats ${animal.changeFood(`meal with rice`)}`
       }
     } else if (animal.isHomless) {
       return {

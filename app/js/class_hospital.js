@@ -10,7 +10,7 @@ export default class Hospital {
   getFindingPetsPeople() {
     return this.#findingPetsPeople;
   }
-  addAnimal(pet) {
+  addAnimal(...pet) {
     this.#illAnimals.push(pet);
   }
   addPeople(...seekers) {
