@@ -1,4 +1,5 @@
 "use strict";
+import Person from "./class_person";
 import Cat from "./class_cat";
 import Dog from "./class_dog";
 import Hospital from "./class_hospital";
@@ -10,42 +11,36 @@ function main() {
   const veterinarian = new Veterinarian("Corniei Ivanovich", "Chukovskii", hospital);
 
   hospital.addPeople(
-    "Darkwing Duck",
-    "Gena The Crocodile",
-    "Snow Maiden",
-    "Little Mermaid",
-    "Snow White",
-    "Little Red Riding Hood",
-    "Topple",
-    "Shrek",
-    "WALL-E",
-    "Bender"
+    new Person("Darkwing", "Duck"),
+    new Person("Gena", "The Crocodile"),
+    new Person("Show", "Maiden"),
+    new Person("Little", "Mermaid"),
+    new Person("Snow", "White"),
+    new Person("Little Red", "Riding Hood"),
+    new Person("Topple", "Withoutfriends"),
+    new Person("Shrek", "Green"),
+    new Person("WALL-E", "The robot"),
+    new Person("Bender", "Ironsod")
   );
 
   let catTom = new Cat("Tom", "pet food", "New York");
   let dogDruzhok = new Dog("Druzhok", "meat", "Kharkiv", 25);
-  let catBarsik = new Cat("Barsik", "vegetables", "Dnipro", false);
-  let dogCharli = new Dog("Charli", "porridge", "London", 12);
+  let catBarsik = new Cat("Barsik", "vegetables", "Dnipro");
+  let dogCharli = new Dog("Charli", "pet food", "London", 12);
   let catSonia = new Cat("Sonia", "Whiskas", "Poltava");
 
-  //отправим животинку на проверку
-  veterinarian.treatAnimal(catTom);
-  veterinarian.treatAnimal(dogDruzhok);
-  veterinarian.treatAnimal(catBarsik);
-  veterinarian.treatAnimal(dogCharli);
-  veterinarian.treatAnimal(catSonia);
+  let petsArr = [catTom, dogDruzhok, catBarsik, dogCharli, catSonia]
 
   //врач + результат проверки
   console.group(veterinarian.getFullName());
-  console.log(veterinarian._setDiagnosis(catTom).info);
-  console.log(veterinarian._setDiagnosis(dogDruzhok).info);
-  console.log(veterinarian._setDiagnosis(catTom));
-  console.log(veterinarian._setDiagnosis(dogDruzhok));
-  console.log(veterinarian._setDiagnosis(catSonia).info);
+  petsArr.forEach(item => {
+    console.log(veterinarian.treatAnimal(item));
+  });
   console.groupEnd();
 
   //животные в клинике
-  console.log('Animals in the hospital: ' + hospital.getAnimals().reduce((acc, item) => [...acc, item.nickname], []).join(", "));
+  const arr = hospital.getAnimals().map(item => " " + item.nickname);
+  console.log('Animals in the hospital:' + arr);
 }
 
 main();

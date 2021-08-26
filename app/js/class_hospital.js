@@ -14,7 +14,7 @@ export default class Hospital {
     return this.#illAnimals.push(pet);
   }
   addPeople(...seekers) {
-    return seekers.forEach(item => this.#findingPetsPeople.push(item));
+    return this.#findingPetsPeople = [...this.#findingPetsPeople, ...seekers];
   }
   findHome(animal) {
     if (this.#illAnimals.find(item => item.nickname === animal.nickname)) {
@@ -22,11 +22,11 @@ export default class Hospital {
         status: "restricted",
         message: `We need to heal ${animal.nickname} firstly`
       }
-    } else {
-      return {
-        status: "success",
-        name: this.#findingPetsPeople.splice(Math.floor(Math.random() * this.#findingPetsPeople.length), 1).join("")
-      }
+    }
+    return {
+      status: "success",
+      name: this.#findingPetsPeople.splice((Math.floor(Math.random() * this.#findingPetsPeople.length)), 1)[0].getFullName()
+      //решил так, не хочу выносить никуда переменные. это одноразовая акция - пусть остается
     }
   }
 }
