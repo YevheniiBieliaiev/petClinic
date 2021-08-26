@@ -11,10 +11,10 @@ export default class Hospital {
     return this.#findingPetsPeople;
   }
   addAnimal(pet) {
-    return this.#illAnimals.push(pet);
+    this.#illAnimals.push(pet);
   }
   addPeople(...seekers) {
-    return this.#findingPetsPeople = [...this.#findingPetsPeople, ...seekers];
+    this.#findingPetsPeople = [...this.#findingPetsPeople, ...seekers];
   }
   findHome(animal) {
     if (this.#illAnimals.find(item => item.nickname === animal.nickname)) {
