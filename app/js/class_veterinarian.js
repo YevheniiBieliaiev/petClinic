@@ -28,10 +28,9 @@ export default class Veterinarian extends Person {
         diagnosis: this.#diagnosis.healthy,
         info: `Change home. Now ${this.hospital.findHome(animal).name} has a new friend - ${animal.nickname}`
       }
-    } else {
-      return {
-        diagnosis: this.#diagnosis.healthy
-      }
+    }
+    return {
+      diagnosis: this.#diagnosis.healthy
     }
   };
   treatAnimal(animal) {
